@@ -1,0 +1,2736 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GrowthSpree — Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="http://client2.local:8080/api/zipeline/feeds/tracker.js?ai_mode=off"></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --navy: #112359;
+        --navy-dk: #0b1e48;
+        --navy-mid: #1a2f6b;
+        --navy-lite: #384b78;
+        --navy-mute: #66759a;
+        --gold: #d4a653;
+        --gold-lt: #efcf82;
+        --gold-bg: #f5e9cc;
+        --gold-a: rgba(212, 166, 83, 0.15);
+        --gold-b: rgba(212, 166, 83, 0.3);
+        --green: #10b981;
+        --red: #fe566b;
+        --bg: #f9fafd;
+        --bg-alt: #fcfaf4;
+        --white: #ffffff;
+        --w80: rgba(255, 255, 255, 0.82);
+        --w50: rgba(255, 255, 255, 0.52);
+        --w20: rgba(255, 255, 255, 0.18);
+        --w08: rgba(255, 255, 255, 0.08);
+        --w04: rgba(255, 255, 255, 0.04);
+        --border: rgba(17, 35, 89, 0.08);
+        --border-gold: rgba(212, 166, 83, 0.25);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--navy-lite);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 48px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--navy);
+        background: var(--gold-bg);
+        padding: 5px 14px;
+        border-radius: 50px;
+        margin-bottom: 18px;
+      }
+      .eyebrow-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(212, 166, 83, 0.12);
+        padding: 5px 14px;
+        border-radius: 50px;
+        margin-bottom: 18px;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--navy);
+        color: #fff;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 13px 26px;
+        border-radius: 42px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.22s;
+        white-space: nowrap;
+      }
+      .btn-primary:hover {
+        background: var(--navy-mid);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(17, 35, 89, 0.22);
+      }
+      .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--navy);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 13px 26px;
+        border-radius: 42px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .btn-gold:hover {
+        background: var(--gold-lt);
+        transform: translateY(-1px);
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--navy);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 42px;
+        border: 1.5px solid rgba(17, 35, 89, 0.2);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--navy);
+        background: rgba(17, 35, 89, 0.04);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-d1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-d2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-d3 {
+        transition-delay: 0.3s;
+      }
+
+      /* ══ NAV ══ */
+      .nav {
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 48px);
+        max-width: 1120px;
+        background: var(--white);
+        border-radius: 16px;
+        box-shadow: 0 2px 20px rgba(17, 35, 89, 0.1);
+        z-index: 100;
+      }
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+      }
+      .nav__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 17px;
+        color: var(--navy);
+        text-decoration: none;
+      }
+      .nav__mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--navy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 15px;
+      }
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav__links a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--navy-lite);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .nav__links a:hover,
+      .nav__links a.active {
+        color: var(--navy);
+      }
+      .nav__links a.active {
+        font-weight: 700;
+      }
+      .nav__cta {
+        background: var(--navy);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px 20px;
+        border-radius: 42px;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .nav__cta:hover {
+        background: var(--navy-mid);
+      }
+
+      /* ══ PAGE HERO ══ */
+      .page-hero {
+        padding: 148px 0 80px;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -100px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 166, 83, 0.09) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -100px;
+        width: 450px;
+        height: 450px;
+        background: radial-gradient(
+          circle,
+          rgba(17, 35, 89, 0.04) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .page-hero__inner {
+        max-width: 760px;
+        position: relative;
+        z-index: 1;
+      }
+      .page-hero__h1 {
+        font-size: clamp(40px, 5vw, 64px);
+        font-weight: 800;
+        line-height: 1.06;
+        letter-spacing: -0.028em;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+      .page-hero__h1 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .page-hero__sub {
+        font-size: 18px;
+        color: var(--navy-lite);
+        line-height: 1.75;
+        max-width: 580px;
+        margin-bottom: 36px;
+      }
+      .page-hero__actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* ══ SERVICES NAV TABS ══ */
+      .svc-tabs {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 68px;
+        z-index: 90;
+      }
+      .svc-tabs__inner {
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+        padding: 0 48px;
+        max-width: 1120px;
+        margin: 0 auto;
+        scrollbar-width: none;
+      }
+      .svc-tabs__inner::-webkit-scrollbar {
+        display: none;
+      }
+      .svc-tab {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--navy-mute);
+        padding: 16px 20px;
+        white-space: nowrap;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .svc-tab:hover {
+        color: var(--navy);
+      }
+      .svc-tab.active {
+        color: var(--navy);
+        border-bottom-color: var(--navy);
+      }
+      .svc-tab__dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--gold);
+        flex-shrink: 0;
+      }
+
+      /* ══ SERVICE SECTIONS ══ */
+      .svc-section {
+        padding: 96px 0;
+      }
+      .svc-section:nth-child(even) {
+        background: var(--bg-alt);
+      }
+
+      .svc-section__header {
+        margin-bottom: 56px;
+      }
+      .svc-section__h2 {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--navy);
+        margin-bottom: 14px;
+      }
+      .svc-section__h2 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .svc-section__sub {
+        font-size: 16px;
+        color: var(--navy-mute);
+        line-height: 1.75;
+        max-width: 560px;
+      }
+
+      /* ── Service Layout: Text + Feature Grid ── */
+      .svc-layout {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .svc-layout--flip {
+        grid-template-columns: 1fr 380px;
+      }
+      .svc-layout--flip .svc-left {
+        order: 2;
+      }
+      .svc-layout--flip .svc-right {
+        order: 1;
+      }
+
+      .svc-left__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--gold);
+        background: var(--gold-bg);
+        padding: 5px 14px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+      }
+      .svc-left__h3 {
+        font-size: clamp(22px, 2.5vw, 30px);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.2;
+        letter-spacing: -0.018em;
+        margin-bottom: 16px;
+      }
+      .svc-left__p {
+        font-size: 15px;
+        color: var(--navy-mute);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+      .svc-left__results {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 20px 24px;
+        border: 1.5px solid var(--border);
+        margin-bottom: 24px;
+      }
+      .svc-left__results-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        color: var(--navy-mute);
+        margin-bottom: 12px;
+      }
+      .svc-left__results-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .svc-left__results-row:last-child {
+        margin-bottom: 0;
+      }
+      .svc-result-val {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--gold);
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 72px;
+      }
+      .svc-result-val--green {
+        color: var(--green);
+      }
+      .svc-result-val--blue {
+        color: #60a5fa;
+      }
+      .svc-result-label {
+        font-size: 13px;
+        color: var(--navy-mute);
+        line-height: 1.4;
+      }
+
+      /* ── Feature Cards Grid ── */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .feat-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 24px;
+        border: 1.5px solid var(--border);
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .feat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .feat-card:hover::before {
+        opacity: 1;
+      }
+      .feat-card:hover {
+        border-color: rgba(212, 166, 83, 0.25);
+        box-shadow: 0 8px 28px rgba(17, 35, 89, 0.07);
+        transform: translateY(-3px);
+      }
+      .feat-card--wide {
+        grid-column: span 2;
+      }
+      .feat-card__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--gold-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+      .feat-card__h {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+      .feat-card__p {
+        font-size: 13px;
+        color: var(--navy-mute);
+        line-height: 1.65;
+      }
+      .feat-card__tag {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 10.5px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 50px;
+      }
+      .tag--green {
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--green);
+      }
+      .tag--gold {
+        background: var(--gold-bg);
+        color: var(--navy);
+      }
+      .tag--blue {
+        background: rgba(59, 130, 246, 0.12);
+        color: #60a5fa;
+      }
+
+      /* ── Process Steps ── */
+      .process {
+        margin-top: 64px;
+      }
+      .process__label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--navy-mute);
+        margin-bottom: 24px;
+      }
+      .process__steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .process__step {
+        position: relative;
+        padding-right: 16px;
+      }
+      .process__step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        right: -4px;
+        width: calc(100% - 44px);
+        height: 1px;
+        background: linear-gradient(90deg, var(--border), transparent);
+        left: 44px;
+      }
+      .process__num {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+      }
+      .process__step-h {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .process__step-p {
+        font-size: 12px;
+        color: var(--navy-mute);
+        line-height: 1.55;
+      }
+
+      /* ══ DARK SERVICE SECTION ══ */
+      .svc-dark {
+        padding: 96px 0;
+        background: var(--navy-dk);
+        position: relative;
+        overflow: hidden;
+      }
+      .svc-dark::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -80px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 166, 83, 0.07) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .svc-dark__header {
+        margin-bottom: 52px;
+      }
+      .svc-dark__h2 {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        margin-bottom: 14px;
+      }
+      .svc-dark__h2 em {
+        font-style: italic;
+        color: var(--gold-lt);
+      }
+      .svc-dark__sub {
+        font-size: 16px;
+        color: var(--w50);
+        line-height: 1.75;
+        max-width: 520px;
+      }
+
+      .dark-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .dark-card {
+        background: var(--w04);
+        border: 1px solid var(--w08);
+        border-radius: 18px;
+        padding: 28px;
+        transition: all 0.25s;
+        position: relative;
+      }
+      .dark-card:hover {
+        background: var(--w08);
+        border-color: var(--w20);
+        transform: translateY(-3px);
+      }
+      .dark-card__num {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--gold);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .dark-card__num::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--gold);
+        opacity: 0.5;
+      }
+      .dark-card__icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: var(--gold-a);
+        border: 1px solid var(--gold-b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+      .dark-card__h {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .dark-card__p {
+        font-size: 13.5px;
+        color: var(--w50);
+        line-height: 1.7;
+      }
+      .dark-card__proof {
+        margin-top: 16px;
+        padding: 12px 14px;
+        background: rgba(16, 185, 129, 0.08);
+        border-radius: 9px;
+        border-left: 3px solid var(--green);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.5;
+      }
+      .dark-card__proof strong {
+        color: var(--green);
+      }
+
+      /* ══ INDUSTRIES ══ */
+      .industries {
+        padding: 96px 0;
+        background: var(--bg);
+      }
+      .industries__header {
+        text-align: center;
+        margin-bottom: 52px;
+      }
+      .industries__h2 {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--navy);
+        margin-bottom: 14px;
+      }
+      .industries__h2 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .industries__sub {
+        font-size: 16px;
+        color: var(--navy-mute);
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.75;
+      }
+
+      .ind-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .ind-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 24px;
+        border: 1.5px solid var(--border);
+        text-align: center;
+        transition: all 0.25s;
+        cursor: default;
+      }
+      .ind-card:hover {
+        border-color: rgba(212, 166, 83, 0.3);
+        box-shadow: 0 8px 28px rgba(17, 35, 89, 0.07);
+        transform: translateY(-4px);
+      }
+      .ind-card__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: var(--gold-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 0 auto 14px;
+      }
+      .ind-card__h {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+      }
+      .ind-card__p {
+        font-size: 12.5px;
+        color: var(--navy-mute);
+        line-height: 1.6;
+      }
+      .ind-card__clients {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .ind-client {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 50px;
+        background: var(--bg);
+        color: var(--navy-mute);
+        border: 1px solid var(--border);
+      }
+
+      /* ══ PRICING / PACKAGES ══ */
+      .packages {
+        padding: 96px 0;
+        background: var(--bg-alt);
+      }
+      .packages__header {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .packages__h2 {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--navy);
+        margin-bottom: 14px;
+      }
+      .packages__h2 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .packages__sub {
+        font-size: 16px;
+        color: var(--navy-mute);
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.75;
+      }
+
+      .pkg-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .pkg-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 36px;
+        border: 1.5px solid var(--border);
+        transition: all 0.25s;
+        position: relative;
+      }
+      .pkg-card--featured {
+        background: var(--navy);
+        border-color: transparent;
+        box-shadow: 0 16px 48px rgba(17, 35, 89, 0.18);
+      }
+      .pkg-card:not(.pkg-card--featured):hover {
+        border-color: rgba(212, 166, 83, 0.25);
+        box-shadow: 0 12px 32px rgba(17, 35, 89, 0.08);
+        transform: translateY(-4px);
+      }
+      .pkg-badge {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: var(--navy);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 4px 16px;
+        border-radius: 50px;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
+      }
+      .pkg-card__tier {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+      }
+      .pkg-card--featured .pkg-card__tier {
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-card__tier {
+        color: var(--navy-mute);
+      }
+      .pkg-card__name {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+      .pkg-card--featured .pkg-card__name {
+        color: var(--white);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-card__name {
+        color: var(--navy);
+      }
+      .pkg-card__desc {
+        font-size: 13.5px;
+        line-height: 1.65;
+        margin-bottom: 24px;
+      }
+      .pkg-card--featured .pkg-card__desc {
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-card__desc {
+        color: var(--navy-mute);
+      }
+      .pkg-divider {
+        border: none;
+        border-top: 1px solid;
+        margin-bottom: 20px;
+      }
+      .pkg-card--featured .pkg-divider {
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-divider {
+        border-color: var(--border);
+      }
+      .pkg-card__features {
+        list-style: none;
+        margin-bottom: 28px;
+      }
+      .pkg-card__features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13.5px;
+        line-height: 1.55;
+        padding: 6px 0;
+      }
+      .pkg-card--featured .pkg-card__features li {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-card__features li {
+        color: var(--navy-mute);
+      }
+      .pkg-check {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pkg-card--featured .pkg-check {
+        background: rgba(16, 185, 129, 0.15);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-check {
+        background: var(--gold-bg);
+      }
+      .pkg-check svg {
+        width: 10px;
+        height: 10px;
+      }
+      .pkg-card--featured .pkg-check svg {
+        stroke: var(--green);
+      }
+      .pkg-card:not(.pkg-card--featured) .pkg-check svg {
+        stroke: var(--gold);
+      }
+      .pkg-card__cta {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .btn-pkg-light {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg);
+        color: var(--navy);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 24px;
+        border-radius: 42px;
+        border: 1.5px solid var(--border);
+        text-decoration: none;
+        transition: all 0.22s;
+      }
+      .btn-pkg-light:hover {
+        background: var(--white);
+        border-color: var(--navy);
+      }
+      .btn-pkg-gold {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gold);
+        color: var(--navy);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 24px;
+        border-radius: 42px;
+        border: none;
+        text-decoration: none;
+        transition: all 0.22s;
+        box-shadow: 0 4px 16px rgba(212, 166, 83, 0.3);
+      }
+      .btn-pkg-gold:hover {
+        background: var(--gold-lt);
+        box-shadow: 0 8px 24px rgba(212, 166, 83, 0.4);
+      }
+
+      /* ══ MINI CASE STUDIES ══ */
+      .mini-cases {
+        padding: 96px 0;
+        background: var(--navy-dk);
+        position: relative;
+        overflow: hidden;
+      }
+      .mini-cases::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        left: -80px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 166, 83, 0.06) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .mini-cases__header {
+        text-align: center;
+        margin-bottom: 52px;
+      }
+      .mini-cases__h2 {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        margin-bottom: 14px;
+      }
+      .mini-cases__h2 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .mini-cases__sub {
+        font-size: 16px;
+        color: var(--w50);
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.75;
+      }
+
+      .mc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .mc-card {
+        background: var(--w04);
+        border: 1px solid var(--w08);
+        border-radius: 20px;
+        padding: 32px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .mc-card:hover {
+        border-color: var(--gold-b);
+        transform: translateY(-3px);
+      }
+      .mc-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 160px;
+        height: 160px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 166, 83, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .mc-card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .mc-card__co {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .mc-card__logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+      }
+      .mc-logo--gold {
+        background: linear-gradient(135deg, var(--gold), #b8892a);
+      }
+      .mc-logo--green {
+        background: linear-gradient(135deg, #059669, #047857);
+      }
+      .mc-logo--blue {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      }
+      .mc-logo--purple {
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      }
+      .mc-card__name {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .mc-card__vertical {
+        font-size: 11px;
+        color: var(--w50);
+        margin-top: 2px;
+      }
+      .mc-card__chip {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 50px;
+      }
+      .chip--green {
+        background: rgba(16, 185, 129, 0.15);
+        color: var(--green);
+      }
+      .chip--gold {
+        background: rgba(212, 166, 83, 0.15);
+        color: var(--gold);
+      }
+      .chip--blue {
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+      }
+      .mc-card__stat {
+        font-size: 52px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 4px;
+      }
+      .mc-s--gold {
+        color: var(--gold);
+      }
+      .mc-s--green {
+        color: var(--green);
+      }
+      .mc-s--blue {
+        color: #60a5fa;
+      }
+      .mc-card__stat-lbl {
+        font-size: 12px;
+        color: var(--w50);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-bottom: 14px;
+      }
+      .mc-card__desc {
+        font-size: 13px;
+        color: var(--w50);
+        line-height: 1.65;
+        margin-bottom: 16px;
+      }
+      .mc-card__metrics {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .mc-pill {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 50px;
+      }
+      .mc-pill--green {
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--green);
+      }
+      .mc-pill--gold {
+        background: rgba(212, 166, 83, 0.12);
+        color: var(--gold);
+      }
+      .mc-pill--blue {
+        background: rgba(59, 130, 246, 0.12);
+        color: #60a5fa;
+      }
+
+      .mc-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 36px;
+      }
+      .mc-cta-note {
+        font-size: 13px;
+        color: var(--w50);
+      }
+
+      /* ══ FINAL CTA ══ */
+      .cta-final {
+        padding: 96px 0;
+        background: var(--navy);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .cta-final::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 166, 83, 0.09) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .cta-final__inner {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-final__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(212, 166, 83, 0.12);
+        padding: 5px 14px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+      }
+      .cta-final__h2 {
+        font-size: clamp(30px, 4vw, 52px);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        color: var(--white);
+        margin-bottom: 18px;
+      }
+      .cta-final__h2 em {
+        font-style: italic;
+        color: var(--gold-lt);
+      }
+      .cta-final__sub {
+        font-size: 17px;
+        color: var(--w50);
+        margin-bottom: 36px;
+        line-height: 1.75;
+      }
+      .cta-final__btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .cta-final__trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      .cta-final__trust-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: var(--w50);
+      }
+      .cta-final__trust-item svg {
+        width: 15px;
+        height: 15px;
+        stroke: var(--gold);
+        flex-shrink: 0;
+      }
+
+      /* ══ FOOTER ══ */
+      .footer {
+        padding: 40px 0;
+        background: var(--navy-dk);
+        border-top: 1px solid var(--w08);
+      }
+      .footer__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 16px;
+        color: var(--white);
+      }
+      .footer__mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        background: var(--gold);
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .footer__links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer__links a {
+        font-size: 13px;
+        color: var(--w50);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .footer__links a:hover {
+        color: var(--white);
+      }
+      .footer__copy {
+        font-size: 12px;
+        color: var(--w50);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 1024px) {
+        .svc-layout,
+        .svc-layout--flip {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .svc-layout--flip .svc-left,
+        .svc-layout--flip .svc-right {
+          order: unset;
+        }
+        .dark-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ind-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .mc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 24px;
+        }
+        .nav__links {
+          display: none;
+        }
+        .nav {
+          width: calc(100% - 32px);
+        }
+        .svc-tabs__inner {
+          padding: 0 24px;
+        }
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .feat-card--wide {
+          grid-column: span 1;
+        }
+        .process__steps {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .process__step::after {
+          display: none;
+        }
+        .pkg-grid {
+          grid-template-columns: 1fr;
+        }
+        .ind-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .page-hero {
+          padding: 120px 0 60px;
+        }
+      }
+      @media (max-width: 480px) {
+        .page-hero__actions {
+          flex-direction: column;
+        }
+        .ind-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ NAV ══ -->
+    <nav class="nav">
+      <div class="nav__inner">
+        <a href="/" class="nav__logo">
+          <div class="nav__mark">G</div>
+          GrowthSpree
+        </a>
+        <ul class="nav__links">
+          <li><a href="#" class="active">Services</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Clients</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <a
+          href="https://www.growthspreeofficial.com/book-a-demo"
+          class="nav__cta"
+          >Book a Free Audit →</a
+        >
+      </div>
+    </nav>
+
+    <!-- ══ PAGE HERO ══ -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero__inner reveal">
+          <div class="eyebrow">What We Do</div>
+          <h1 class="page-hero__h1">
+            Every service built to<br />drive <em>real pipeline</em>
+          </h1>
+          <p class="page-hero__sub">
+            We don't offer a menu of tactics. We deploy the exact combination of
+            services your B2B SaaS needs to generate, qualify, and compound
+            pipeline — backed by proprietary AI.
+          </p>
+          <div class="page-hero__actions">
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="btn-primary"
+            >
+              Get a Free Pipeline Audit
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                width="14"
+                height="14"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a
+              href="https://www.growthspreeofficial.com/case-studies"
+              class="btn-secondary"
+              >See Client Results</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ STICKY SERVICE TABS ══ -->
+    <div class="svc-tabs">
+      <div class="svc-tabs__inner">
+        <a href="#paid" class="svc-tab active"
+          ><span class="svc-tab__dot"></span>Paid Demand Gen</a
+        >
+        <a href="#seo" class="svc-tab">SEO & Content</a>
+        <a href="#abm" class="svc-tab">ABM & Outbound</a>
+        <a href="#cro" class="svc-tab">CRO & Funnel</a>
+        <a href="#ai" class="svc-tab">AI Technology</a>
+      </div>
+    </div>
+
+    <!-- ══ PAID DEMAND GEN ══ -->
+    <section class="svc-section" id="paid">
+      <div class="container">
+        <div class="svc-section__header reveal">
+          <div class="eyebrow">Service 01</div>
+          <h2 class="svc-section__h2">
+            Paid Demand Generation<br /><em>that pays for itself</em>
+          </h2>
+          <p class="svc-section__sub">
+            Full-funnel paid media across Google, Meta, and LinkedIn —
+            structured for ROAS, not just spend. Senior operators run your
+            campaigns daily.
+          </p>
+        </div>
+
+        <div class="svc-layout reveal">
+          <!-- Left: context + results -->
+          <div class="svc-left">
+            <div class="svc-left__tag">Google · Meta · LinkedIn</div>
+            <h3 class="svc-left__h3">
+              Not campaign management. Demand engineering.
+            </h3>
+            <p class="svc-left__p">
+              Most agencies optimise for impressions and clicks. We optimise for
+              pipeline. Every dollar traced from click to closed deal — and
+              adjusted in real time by our QLA AI agent.
+            </p>
+            <div class="svc-left__results">
+              <div class="svc-left__results-label">Recent client outcomes</div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val">350%</div>
+                <div class="svc-result-label">
+                  ROAS growth — PriceLabs, 9 months
+                </div>
+              </div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val svc-result-val--green">−45%</div>
+                <div class="svc-result-label">
+                  Cost per acquisition at $180K/mo spend
+                </div>
+              </div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val svc-result-val--blue">4×</div>
+                <div class="svc-result-label">
+                  Trial volume on $5K/mo — Trackxi
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="btn-primary"
+            >
+              Start With a Free Audit →
+            </a>
+          </div>
+
+          <!-- Right: feature cards -->
+          <div class="svc-right">
+            <div class="feat-grid">
+              <div class="feat-card reveal">
+                <div class="feat-card__icon">🎯</div>
+                <div class="feat-card__h">ICP-First Campaign Architecture</div>
+                <p class="feat-card__p">
+                  Campaigns built around your exact ideal customer profile — not
+                  generic SaaS audiences. Keyword, audience, and creative
+                  layered to attract buyers, not browsers.
+                </p>
+                <span class="feat-card__tag tag--gold">Strategic</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">🤖</div>
+                <div class="feat-card__h">AI Bid Intelligence</div>
+                <p class="feat-card__p">
+                  Our QLA AI agent filters for ICP-fit demand in real time —
+                  eliminating low-intent signals and feeding cleaner data back
+                  into your bidding models.
+                </p>
+                <span class="feat-card__tag tag--green">AI-Powered</span>
+              </div>
+              <div class="feat-card reveal reveal-d2">
+                <div class="feat-card__icon">📊</div>
+                <div class="feat-card__h">Full Attribution Reporting</div>
+                <p class="feat-card__p">
+                  Every lead tagged from source to close. No black-box
+                  reporting. You see exactly which campaigns generate pipeline,
+                  not just form fills.
+                </p>
+                <span class="feat-card__tag tag--blue">Transparent</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">⚡</div>
+                <div class="feat-card__h">Daily Optimisation Loops</div>
+                <p class="feat-card__p">
+                  Budgets, bids, and copy updated every day — not every month.
+                  Anomalies caught in hours. Momentum compounds instead of
+                  plateauing.
+                </p>
+                <span class="feat-card__tag tag--green">Always-On</span>
+              </div>
+              <div class="feat-card reveal reveal-d2 feat-card--wide">
+                <div class="feat-card__icon">🔬</div>
+                <div class="feat-card__h">
+                  Landing Page Experimentation — Powered by LP Accelerator
+                </div>
+                <p class="feat-card__p">
+                  Our LP Accelerator builds and deploys new landing pages in
+                  hours — not weeks. Rapid A/B testing of messaging, offer, and
+                  layout. No dev bottleneck. No 3-week design queue. Just faster
+                  answers to what converts.
+                </p>
+                <span class="feat-card__tag tag--gold">Proprietary Tool</span>
+              </div>
+            </div>
+
+            <div class="process reveal">
+              <div class="process__label">How it works</div>
+              <div class="process__steps">
+                <div class="process__step">
+                  <div class="process__num">1</div>
+                  <div class="process__step-h">Audit & Blueprint</div>
+                  <p class="process__step-p">
+                    Full account audit. ICP mapping. Structural rebuild plan.
+                  </p>
+                </div>
+                <div class="process__step">
+                  <div class="process__num">2</div>
+                  <div class="process__step-h">Launch & Instrument</div>
+                  <p class="process__step-p">
+                    Campaigns live. Attribution set up. AI agents activated.
+                  </p>
+                </div>
+                <div class="process__step">
+                  <div class="process__num">3</div>
+                  <div class="process__step-h">Optimise Daily</div>
+                  <p class="process__step-p">
+                    Bids, budgets, copy adjusted. Experiments running live.
+                  </p>
+                </div>
+                <div class="process__step">
+                  <div class="process__num">4</div>
+                  <div class="process__step-h">Compound & Scale</div>
+                  <p class="process__step-p">
+                    Pipeline compounds. Spend scales with confidence.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SEO & CONTENT ══ -->
+    <section class="svc-section" id="seo">
+      <div class="container">
+        <div class="svc-section__header reveal">
+          <div class="eyebrow">Service 02</div>
+          <h2 class="svc-section__h2">
+            SEO & Content that<br /><em>compounds over time</em>
+          </h2>
+          <p class="svc-section__sub">
+            Inbound built to last — programmatic SEO, intent-mapped content, and
+            technical foundations that turn search into a durable pipeline
+            source.
+          </p>
+        </div>
+
+        <div class="svc-layout svc-layout--flip reveal">
+          <!-- Left side (reordered as right visually) -->
+          <div class="svc-left">
+            <div class="svc-left__tag">SEO · Content · Authority</div>
+            <h3 class="svc-left__h3">
+              An inbound engine — not just blog posts.
+            </h3>
+            <p class="svc-left__p">
+              We build content systems, not one-off articles. Keyword research
+              tied to buyer intent. Programmatic pages for high-volume terms.
+              Technical SEO that actually moves rankings. All tracked to MQL,
+              not vanity traffic.
+            </p>
+            <div class="svc-left__results">
+              <div class="svc-left__results-label">Recent client outcomes</div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val">$1M+</div>
+                <div class="svc-result-label">
+                  ARR milestone from zero inbound — Gumlet
+                </div>
+              </div>
+              <div
+                class="svc-result-val--green svc-result-val"
+                style="font-size: 22px; font-weight: 800; color: var(--green)"
+              >
+                8,400
+              </div>
+              <div class="svc-left__results-row" style="margin-top: 8px">
+                <div class="svc-result-label" style="margin-left: 0">
+                  Monthly organic visitors built from scratch in 12 months
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="btn-primary"
+            >
+              Get an SEO Audit →
+            </a>
+          </div>
+
+          <!-- Right side feature cards -->
+          <div class="svc-right">
+            <div class="feat-grid">
+              <div class="feat-card reveal">
+                <div class="feat-card__icon">🗺️</div>
+                <div class="feat-card__h">Intent-Mapped Keyword Strategy</div>
+                <p class="feat-card__p">
+                  Keywords selected by purchase intent and ICP signal — not
+                  volume alone. Bottom-of-funnel terms prioritised first for
+                  fastest pipeline impact.
+                </p>
+                <span class="feat-card__tag tag--gold">Strategic</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">⚙️</div>
+                <div class="feat-card__h">Technical SEO Foundation</div>
+                <p class="feat-card__p">
+                  Core Web Vitals, crawlability, internal linking, schema markup
+                  — the infrastructure that lets great content rank faster and
+                  stay ranked longer.
+                </p>
+                <span class="feat-card__tag tag--blue">Technical</span>
+              </div>
+              <div class="feat-card reveal reveal-d2">
+                <div class="feat-card__icon">✍️</div>
+                <div class="feat-card__h">AI-Assisted Content at Scale</div>
+                <p class="feat-card__p">
+                  Our Content Accelerator (Claude-powered) handles ideation,
+                  drafting, and iteration — with human strategists owning tone,
+                  accuracy, and narrative.
+                </p>
+                <span class="feat-card__tag tag--green">AI + Human</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">📈</div>
+                <div class="feat-card__h">Programmatic SEO at Scale</div>
+                <p class="feat-card__p">
+                  Hundreds of intent-driven landing pages built and indexed
+                  rapidly. Ideal for comparison terms, use-case pages, and
+                  competitor-adjacent searches.
+                </p>
+                <span class="feat-card__tag tag--gold">Scalable</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ABM & OUTBOUND (dark) ══ -->
+    <section class="svc-dark" id="abm">
+      <div class="container">
+        <div class="svc-dark__header reveal">
+          <div class="eyebrow-dark">Service 03</div>
+          <h2 class="svc-dark__h2">
+            ABM & Outbound that<br /><em>targets the right accounts</em>
+          </h2>
+          <p class="svc-dark__sub">
+            Named-account precision. Always-on LinkedIn targeting.
+            Intent-triggered outbound sequences. No spray-and-pray. No cold
+            lists.
+          </p>
+        </div>
+
+        <div class="dark-grid">
+          <div class="dark-card reveal">
+            <div class="dark-card__num">01</div>
+            <div class="dark-card__icon">🏢</div>
+            <h3 class="dark-card__h">Named Account Targeting</h3>
+            <p class="dark-card__p">
+              We identify your Tier 1 target accounts, map buying committees,
+              and run coordinated paid + outbound sequences tuned to each
+              account's stage and signals.
+            </p>
+            <div class="dark-card__proof">
+              Used for Fielddrive — <strong>−38% cost/MQL</strong> with +42%
+              SQLs QoQ
+            </div>
+          </div>
+          <div class="dark-card reveal reveal-d1">
+            <div class="dark-card__num">02</div>
+            <div class="dark-card__icon">💼</div>
+            <h3 class="dark-card__h">LinkedIn ABM Campaigns</h3>
+            <p class="dark-card__p">
+              Buying-group engagement tracked at the account level. Our ABM
+              Accelerator surfaces which accounts are warming, so outbound
+              follows intent — not calendars.
+            </p>
+            <div class="dark-card__proof">
+              Hasura: pipeline went from
+              <strong>inconsistent to predictable</strong>
+            </div>
+          </div>
+          <div class="dark-card reveal reveal-d2">
+            <div class="dark-card__num">03</div>
+            <div class="dark-card__icon">🔍</div>
+            <h3 class="dark-card__h">Intent-Based Prospecting</h3>
+            <p class="dark-card__p">
+              Our Prospecting Accelerator continuously refreshes target lists
+              based on live intent signals and firmographic triggers — so your
+              reps only call accounts that are already looking.
+            </p>
+            <div class="dark-card__proof">
+              Automating list refresh — <strong>no more stale ICP data</strong>
+            </div>
+          </div>
+          <div class="dark-card reveal">
+            <div class="dark-card__num">04</div>
+            <div class="dark-card__icon">📨</div>
+            <h3 class="dark-card__h">Outbound Sequence Design</h3>
+            <p class="dark-card__p">
+              Multi-touch outbound sequences — email, LinkedIn, and direct —
+              written for your ICP's actual pain points. No templated copy. No
+              spray-and-pray cadences.
+            </p>
+            <div class="dark-card__proof">
+              Sequences written by <strong>senior B2B SaaS specialists</strong>
+            </div>
+          </div>
+          <div class="dark-card reveal reveal-d1">
+            <div class="dark-card__num">05</div>
+            <div class="dark-card__icon">📋</div>
+            <h3 class="dark-card__h">Sales & Marketing Alignment</h3>
+            <p class="dark-card__p">
+              ABM only works when sales and marketing share the same account
+              list, the same signals, and the same definition of "ready to
+              engage." We run that coordination loop for you.
+            </p>
+            <div class="dark-card__proof">
+              Rocketlane: <strong>$1-in, $3-out ROI</strong> on pipeline spend
+            </div>
+          </div>
+          <div class="dark-card reveal reveal-d2">
+            <div class="dark-card__num">06</div>
+            <div class="dark-card__icon">📊</div>
+            <h3 class="dark-card__h">Account Engagement Reporting</h3>
+            <p class="dark-card__p">
+              Weekly visibility into account-level engagement across ads,
+              content, and outbound. Your sales team always knows which accounts
+              to call — and why, right now.
+            </p>
+            <div class="dark-card__proof">
+              Powered by our <strong>ABM Accelerator</strong> AI tool
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CRO & FUNNEL ══ -->
+    <section class="svc-section" id="cro">
+      <div class="container">
+        <div class="svc-section__header reveal">
+          <div class="eyebrow">Service 04</div>
+          <h2 class="svc-section__h2">
+            CRO & Funnel Optimisation<br /><em
+              >to convert what you already have</em
+            >
+          </h2>
+          <p class="svc-section__sub">
+            Traffic is expensive. Converting it is how you protect the spend. We
+            close the gap between visitor and trial, trial and demo, demo and
+            close.
+          </p>
+        </div>
+
+        <div class="svc-layout reveal">
+          <div class="svc-left">
+            <div class="svc-left__tag">CRO · UX · Conversion</div>
+            <h3 class="svc-left__h3">More pipeline from the same budget.</h3>
+            <p class="svc-left__p">
+              Improving conversion by even 20% across your funnel is worth more
+              than doubling your ad spend. We audit, hypothesise, build, and
+              test — in weeks, not quarters.
+            </p>
+            <div class="svc-left__results">
+              <div class="svc-left__results-label">
+                What we typically find in audits
+              </div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val">60%</div>
+                <div class="svc-result-label">
+                  Of landing page traffic leaves within 10 seconds
+                </div>
+              </div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val svc-result-val--green">3–4×</div>
+                <div class="svc-result-label">
+                  Typical conversion lift after messaging alignment
+                </div>
+              </div>
+              <div class="svc-left__results-row">
+                <div class="svc-result-val svc-result-val--blue">−51%</div>
+                <div class="svc-result-label">
+                  Cost per trial — Trackxi, post-CRO engagement
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="btn-primary"
+            >
+              Audit My Funnel →
+            </a>
+          </div>
+
+          <div class="svc-right">
+            <div class="feat-grid">
+              <div class="feat-card reveal">
+                <div class="feat-card__icon">🔎</div>
+                <div class="feat-card__h">Full Funnel Audit</div>
+                <p class="feat-card__p">
+                  End-to-end analysis: ad creative → landing page → trial/demo →
+                  onboarding. Every drop-off point identified and quantified in
+                  revenue terms.
+                </p>
+                <span class="feat-card__tag tag--gold">Foundation</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">🧪</div>
+                <div class="feat-card__h">A/B & Multivariate Testing</div>
+                <p class="feat-card__p">
+                  Rapid experiment design and execution. Headlines, CTAs, social
+                  proof placement, pricing presentation — tested and iterated
+                  weekly, not monthly.
+                </p>
+                <span class="feat-card__tag tag--green">Always Testing</span>
+              </div>
+              <div class="feat-card reveal reveal-d2">
+                <div class="feat-card__icon">💬</div>
+                <div class="feat-card__h">ICP Messaging Alignment</div>
+                <p class="feat-card__p">
+                  The biggest conversion lever most SaaS companies miss. We
+                  match your homepage and landing page copy directly to the
+                  language your buyers use when they're in-market.
+                </p>
+                <span class="feat-card__tag tag--gold">High Impact</span>
+              </div>
+              <div class="feat-card reveal reveal-d1">
+                <div class="feat-card__icon">🚀</div>
+                <div class="feat-card__h">
+                  LP Accelerator — Rapid Build & Deploy
+                </div>
+                <p class="feat-card__p">
+                  New landing pages live in days — not weeks. Proprietary
+                  tooling removes the dev dependency so testing velocity
+                  compounds without bottlenecks.
+                </p>
+                <span class="feat-card__tag tag--green">Proprietary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ AI TECHNOLOGY ══ -->
+    <section class="svc-dark" id="ai">
+      <div class="container">
+        <div class="svc-dark__header reveal">
+          <div class="eyebrow-dark">Service 05</div>
+          <h2 class="svc-dark__h2">
+            Proprietary AI that runs<br /><em>while you sleep</em>
+          </h2>
+          <p class="svc-dark__sub">
+            Six purpose-built AI agents targeting six specific demand gen
+            bottlenecks. Not off-the-shelf tools. Not GPT wrappers. Built for
+            B2B SaaS pipeline.
+          </p>
+        </div>
+
+        <div class="dark-grid">
+          <div class="dark-card reveal">
+            <div class="dark-card__num">01</div>
+            <div class="dark-card__icon">🔮</div>
+            <h3 class="dark-card__h">Zipeline — System Monitor</h3>
+            <p class="dark-card__p">
+              24×7 monitoring across your full marketing stack. Anomalies
+              detected. Budget leakages surfaced. Unified reporting across ads,
+              pipeline, and CRM in one view.
+            </p>
+          </div>
+          <div class="dark-card reveal reveal-d1">
+            <div class="dark-card__num">02</div>
+            <div class="dark-card__icon">⚡</div>
+            <h3 class="dark-card__h">QLA — Lead Quality Filter</h3>
+            <p class="dark-card__p">
+              Filters ICP-fit demand from Google and Meta in real time. Reduces
+              noise at the source — so your sales team chases qualified
+              pipeline, not form fills.
+            </p>
+          </div>
+          <div class="dark-card reveal reveal-d2">
+            <div class="dark-card__num">03</div>
+            <div class="dark-card__icon">🔍</div>
+            <h3 class="dark-card__h">Prospecting Accelerator</h3>
+            <p class="dark-card__p">
+              Intent-based account discovery with continuous list refresh.
+              Signals, firmographics, and behaviour layered to surface the
+              accounts most likely to buy now.
+            </p>
+          </div>
+          <div class="dark-card reveal">
+            <div class="dark-card__num">04</div>
+            <div class="dark-card__icon">📊</div>
+            <h3 class="dark-card__h">ABM Accelerator</h3>
+            <p class="dark-card__p">
+              Account-level engagement tracking across LinkedIn Ads and
+              outbound. Buying-group signals mapped. Account warmth scored and
+              surfaced daily for your sales team.
+            </p>
+          </div>
+          <div class="dark-card reveal reveal-d1">
+            <div class="dark-card__num">05</div>
+            <div class="dark-card__icon">🚀</div>
+            <h3 class="dark-card__h">LP Accelerator</h3>
+            <p class="dark-card__p">
+              Rapid landing page design and deployment using Replit — removing
+              the dev bottleneck from experimentation entirely. Ideas to live
+              pages in days, not weeks.
+            </p>
+          </div>
+          <div class="dark-card reveal reveal-d2">
+            <div class="dark-card__num">06</div>
+            <div class="dark-card__icon">✍️</div>
+            <h3 class="dark-card__h">Content & Messaging Accelerator</h3>
+            <p class="dark-card__p">
+              Claude-powered content ideation, drafting, and iteration — with
+              human strategists owning narrative and judgment. AI accelerates
+              throughput. Humans protect quality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ INDUSTRIES ══ -->
+    <section class="industries">
+      <div class="container">
+        <div class="industries__header reveal">
+          <div class="eyebrow">Who We Work With</div>
+          <h2 class="industries__h2">
+            Built for <em>B2B SaaS</em> — across every vertical
+          </h2>
+          <p class="industries__sub">
+            300+ clients from seed to Series C. We know your buyers, your
+            funnels, and what actually moves pipeline in each category.
+          </p>
+        </div>
+
+        <div class="ind-grid">
+          <div class="ind-card reveal">
+            <div class="ind-card__icon">💼</div>
+            <div class="ind-card__h">HR & Workforce Tech</div>
+            <p class="ind-card__p">
+              Demand gen for complex buying committees. Multi-stakeholder
+              journeys mapped and addressed.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">Privado</span>
+              <span class="ind-client">+12 more</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d1">
+            <div class="ind-card__icon">⚙️</div>
+            <div class="ind-card__h">Developer Tools & Infra</div>
+            <p class="ind-card__p">
+              Technical ICP targeting. Bottom-of-funnel SEO for comparison and
+              alternatives terms.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">Hasura</span>
+              <span class="ind-client">Gumlet</span>
+              <span class="ind-client">+8</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d2">
+            <div class="ind-card__icon">🎪</div>
+            <div class="ind-card__h">Event & Community Tech</div>
+            <p class="ind-card__p">
+              Seasonality-driven demand with high AOV enterprise deals. Paid +
+              ABM combinations.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">Hubilo</span>
+              <span class="ind-client">Fielddrive</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d3">
+            <div class="ind-card__icon">💰</div>
+            <div class="ind-card__h">FinTech & Revenue Ops</div>
+            <p class="ind-card__p">
+              Trust-led funnels. Compliance-aware ad creative.
+              Revenue-team-aligned demand gen.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">PriceLabs</span>
+              <span class="ind-client">+6 more</span>
+            </div>
+          </div>
+          <div class="ind-card reveal">
+            <div class="ind-card__icon">🏠</div>
+            <div class="ind-card__h">PropTech & Real Estate</div>
+            <p class="ind-card__p">
+              Niche markets, long sales cycles. Intent signals prioritised.
+              Trial-to-paid conversion focus.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">Trackxi</span>
+              <span class="ind-client">+4 more</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d1">
+            <div class="ind-card__icon">🤝</div>
+            <div class="ind-card__h">Customer Success & CS Ops</div>
+            <p class="ind-card__p">
+              Expansion-focused funnel strategy. Onboarding improvement tied to
+              demand gen outcomes.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">Rocketlane</span>
+              <span class="ind-client">+5 more</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d2">
+            <div class="ind-card__icon">📊</div>
+            <div class="ind-card__h">Analytics & Data Tools</div>
+            <p class="ind-card__p">
+              Educate-first funnels. Thought leadership SEO. High-intent paid
+              campaigns for data buyers.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">+9 clients</span>
+            </div>
+          </div>
+          <div class="ind-card reveal reveal-d3">
+            <div class="ind-card__icon">🔐</div>
+            <div class="ind-card__h">Security & Compliance</div>
+            <p class="ind-card__p">
+              High-trust buying process. Compliance-led messaging. ABM for
+              security-conscious enterprises.
+            </p>
+            <div class="ind-card__clients">
+              <span class="ind-client">+7 clients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PACKAGES ══ -->
+    <section class="packages">
+      <div class="container">
+        <div class="packages__header reveal">
+          <div class="eyebrow">Engagement Models</div>
+          <h2 class="packages__h2">
+            One team. One system.<br /><em>One goal — your pipeline.</em>
+          </h2>
+          <p class="packages__sub">
+            We tailor every engagement to your stage and goals. Here's how most
+            clients start.
+          </p>
+        </div>
+
+        <div class="pkg-grid">
+          <!-- Starter -->
+          <div class="pkg-card reveal">
+            <div class="pkg-card__tier">Starter</div>
+            <div class="pkg-card__name">Growth Foundation</div>
+            <p class="pkg-card__desc">
+              Best for early-stage SaaS teams with $5K–$15K in monthly ad spend
+              who need structure and accountability.
+            </p>
+            <hr class="pkg-divider" />
+            <ul class="pkg-card__features">
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Google Ads management & optimisation
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                ICP audit & campaign restructure
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Weekly performance reporting
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                QLA lead quality filtering
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                1 senior demand gen specialist
+              </li>
+            </ul>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="pkg-card__cta btn-pkg-light"
+              >Start with an Audit →</a
+            >
+          </div>
+
+          <!-- Featured -->
+          <div class="pkg-card pkg-card--featured reveal reveal-d1">
+            <div class="pkg-badge">Most Popular</div>
+            <div class="pkg-card__tier">Scale</div>
+            <div class="pkg-card__name">Full Demand Engine</div>
+            <p class="pkg-card__desc">
+              Best for growth-stage SaaS with $15K–$60K/mo spend ready to
+              systematise pipeline generation.
+            </p>
+            <hr class="pkg-divider" />
+            <ul class="pkg-card__features">
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Google, Meta & LinkedIn management
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                SEO content strategy & execution
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                CRO & landing page experimentation
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Full AI agent suite (all 6 tools)
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Dedicated senior team + weekly reviews
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                CRM & attribution setup
+              </li>
+            </ul>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="pkg-card__cta btn-pkg-gold"
+              >Book a Strategy Call →</a
+            >
+          </div>
+
+          <!-- Enterprise -->
+          <div class="pkg-card reveal reveal-d2">
+            <div class="pkg-card__tier">Enterprise</div>
+            <div class="pkg-card__name">ABM Growth Program</div>
+            <p class="pkg-card__desc">
+              Best for Series B+ SaaS scaling enterprise pipeline with ABM,
+              outbound, and full-funnel ownership.
+            </p>
+            <hr class="pkg-divider" />
+            <ul class="pkg-card__features">
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Everything in Full Demand Engine
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Named account ABM strategy & execution
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Outbound sequence design & management
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Sales & marketing alignment workshops
+              </li>
+              <li>
+                <span class="pkg-check"
+                  ><svg
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M2 6l3 3 5-5" /></svg
+                ></span>
+                Dedicated growth director
+              </li>
+            </ul>
+            <a
+              href="https://www.growthspreeofficial.com/book-a-demo"
+              class="pkg-card__cta btn-pkg-light"
+              >Talk to Sales →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MINI CASE STUDIES ══ -->
+    <section class="mini-cases">
+      <div class="container">
+        <div class="mini-cases__header reveal">
+          <div class="eyebrow-dark">Results by Service</div>
+          <h2 class="mini-cases__h2">
+            See what each service<br /><em>actually delivered</em>
+          </h2>
+          <p class="mini-cases__sub">
+            Real outcomes from real clients across every service line we offer.
+          </p>
+        </div>
+
+        <div class="mc-grid">
+          <div class="mc-card reveal">
+            <div class="mc-card__top">
+              <div class="mc-card__co">
+                <div class="mc-card__logo mc-logo--gold">P</div>
+                <div>
+                  <div class="mc-card__name">PriceLabs</div>
+                  <div class="mc-card__vertical">Hospitality Revenue Tech</div>
+                </div>
+              </div>
+              <span class="mc-card__chip chip--gold">Paid Demand Gen</span>
+            </div>
+            <div class="mc-card__stat mc-s--gold">350%</div>
+            <div class="mc-card__stat-lbl">ROAS Growth · 9 Months</div>
+            <p class="mc-card__desc">
+              Rebuilt the entire Google Ads architecture from a 0.7× starting
+              ROAS to a sustained 2.5× while scaling monthly spend to $180K. CPA
+              dropped 45% in parallel.
+            </p>
+            <div class="mc-card__metrics">
+              <span class="mc-pill mc-pill--green">−45% CPA</span>
+              <span class="mc-pill mc-pill--gold">$180K Mo. Spend</span>
+              <span class="mc-pill mc-pill--blue">2.5× Final ROAS</span>
+            </div>
+          </div>
+
+          <div class="mc-card reveal reveal-d1">
+            <div class="mc-card__top">
+              <div class="mc-card__co">
+                <div class="mc-card__logo mc-logo--green">H</div>
+                <div>
+                  <div class="mc-card__name">Hubilo</div>
+                  <div class="mc-card__vertical">Event Tech SaaS</div>
+                </div>
+              </div>
+              <span class="mc-card__chip chip--green">Full Demand Engine</span>
+            </div>
+            <div class="mc-card__stat mc-s--green">$294K</div>
+            <div class="mc-card__stat-lbl">Pipeline · 90 Days</div>
+            <p class="mc-card__desc">
+              Multi-channel demand engine built from zero — 98 qualified leads,
+              30 sales-accepted opportunities, and 86% cost reduction per
+              revenue-attributed demand in Q1.
+            </p>
+            <div class="mc-card__metrics">
+              <span class="mc-pill mc-pill--green">−86% Cost/RAD</span>
+              <span class="mc-pill mc-pill--blue">98 Qual. Leads</span>
+              <span class="mc-pill mc-pill--gold">30 SAOs</span>
+            </div>
+          </div>
+
+          <div class="mc-card reveal">
+            <div class="mc-card__top">
+              <div class="mc-card__co">
+                <div class="mc-card__logo mc-logo--purple">G</div>
+                <div>
+                  <div class="mc-card__name">Gumlet</div>
+                  <div class="mc-card__vertical">Video & Image CDN</div>
+                </div>
+              </div>
+              <span class="mc-card__chip chip--gold">SEO & Content</span>
+            </div>
+            <div class="mc-card__stat mc-s--gold">$1M+</div>
+            <div class="mc-card__stat-lbl">ARR Milestone · 12 Months</div>
+            <p class="mc-card__desc">
+              Full inbound engine built from zero organic presence. 8,400
+              monthly visitors and compounding SEO authority now drives
+              meaningful ARR contribution every month.
+            </p>
+            <div class="mc-card__metrics">
+              <span class="mc-pill mc-pill--green">8,400 Mo. Visitors</span>
+              <span class="mc-pill mc-pill--blue">Full Inbound Built</span>
+              <span class="mc-pill mc-pill--gold">12mo Partnership</span>
+            </div>
+          </div>
+
+          <div class="mc-card reveal reveal-d1">
+            <div class="mc-card__top">
+              <div class="mc-card__co">
+                <div class="mc-card__logo mc-logo--blue">T</div>
+                <div>
+                  <div class="mc-card__name">Trackxi</div>
+                  <div class="mc-card__vertical">Real Estate SaaS</div>
+                </div>
+              </div>
+              <span class="mc-card__chip chip--blue">CRO + Paid</span>
+            </div>
+            <div class="mc-card__stat mc-s--blue">4×</div>
+            <div class="mc-card__stat-lbl">Trial Volume · 6 Months</div>
+            <p class="mc-card__desc">
+              Niche market with zero brand awareness. Combined CRO and paid
+              restructure quadrupled trial signups on a lean $5K/month budget
+              with 51% lower cost-per-trial.
+            </p>
+            <div class="mc-card__metrics">
+              <span class="mc-pill mc-pill--green">−51% Cost/Trial</span>
+              <span class="mc-pill mc-pill--blue">300% 6-Mo Growth</span>
+              <span class="mc-pill mc-pill--gold">$5K/mo Budget</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mc-cta reveal">
+          <a
+            href="https://www.growthspreeofficial.com/case-studies"
+            class="btn-gold"
+          >
+            View All 20+ Case Studies
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              width="14"
+              height="14"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <span class="mc-cta-note">Series A to Series C · Every vertical</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FINAL CTA ══ -->
+    <section class="cta-final">
+      <div class="cta-final__inner reveal">
+        <div class="cta-final__eyebrow">Ready to Start?</div>
+        <h2 class="cta-final__h2">
+          Find out exactly which services<br />your pipeline
+          <em>actually needs</em>
+        </h2>
+        <p class="cta-final__sub">
+          We start every engagement with a free pipeline audit — not a sales
+          pitch. You'll leave knowing where your funnel leaks, what to fix
+          first, and what results are realistic. No commitment required.
+        </p>
+        <div class="cta-final__btns">
+          <a
+            href="https://www.growthspreeofficial.com/book-a-demo"
+            class="btn-primary"
+            style="font-size: 16px; height: 56px; padding: 0 36px"
+          >
+            Get a Free Pipeline Audit
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              width="14"
+              height="14"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="https://www.growthspreeofficial.com/case-studies"
+            class="btn-secondary"
+            style="
+              border-color: rgba(255, 255, 255, 0.2);
+              color: rgba(255, 255, 255, 0.7);
+            "
+            >See Results First</a
+          >
+        </div>
+        <div class="cta-final__trust">
+          <div class="cta-final__trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+              />
+            </svg>
+            No commitment required
+          </div>
+          <div class="cta-final__trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Pipeline impact in 30 days
+          </div>
+          <div class="cta-final__trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            Senior operators — not juniors
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__logo">
+            <div class="footer__mark">G</div>
+            GrowthSpree
+          </div>
+          <p class="footer__copy">© 2026 GrowthSpree. All rights reserved.</p>
+          <div class="footer__links">
+            <a href="https://www.growthspreeofficial.com/case-studies"
+              >Case Studies</a
+            >
+            <a href="https://www.growthspreeofficial.com/about-us">About</a>
+            <a href="https://www.growthspreeofficial.com/book-a-demo"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* Scroll reveal */
+      const rObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              rObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.07 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => rObs.observe(el));
+
+      /* Service tab active state on scroll */
+      const sections = ["paid", "seo", "abm", "cro", "ai"];
+      const tabs = document.querySelectorAll(".svc-tab");
+
+      const secObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const id = e.target.id;
+              tabs.forEach((t) => t.classList.remove("active"));
+              const active = document.querySelector(`.svc-tab[href="#${id}"]`);
+              if (active) active.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) secObs.observe(el);
+      });
+
+      /* Smooth scroll for tab links */
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector(tab.getAttribute("href"));
+          if (target) {
+            const offset = 130;
+            window.scrollTo({
+              top: target.offsetTop - offset,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
