@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/feeds/:path*",
-            "destination": "https://proxy.zipeline.com/u/9/feeds/:path*"
+            "destination": "https://proxy.zipeline.com/u/12/feeds/:path*"
         }
     ]
 }
