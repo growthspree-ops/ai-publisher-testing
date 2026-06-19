@@ -1,12 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/feeds",
-      "destination": "https://proxy.zipeline.com/u/12/feeds"
-    },
-    {
-      "source": "/feeds/:path*",
-      "destination": "https://proxy.zipeline.com/u/12/feeds/:path*"
+      "source": "/feeds(/.*)?",
+      "destination": "https://proxy.zipeline.com/u/12/feeds$1"
     }
   ]
 }
