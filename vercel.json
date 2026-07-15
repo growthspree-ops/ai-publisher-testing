@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/feeds",
-      "destination": "https://proxy.zipeline.com/u/33/feeds"
+      "source": "/blog",
+      "destination": "https://proxy.zipeline.com/u/33/blog"
     },
     {
-      "source": "/feeds/:path*",
-      "destination": "https://proxy.zipeline.com/u/33/feeds/:path*"
+      "source": "/blog/:path*",
+      "destination": "https://proxy.zipeline.com/u/33/blog/:path*"
     }
   ]
 }
