@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/blog",
-      "destination": "https://proxy.zipeline.com/u/33/blog"
+      "destination": "https://proxy.zipeline.com/u/37/blog"
     },
     {
       "source": "/blog/:path*",
-      "destination": "https://proxy.zipeline.com/u/33/blog/:path*"
+      "destination": "https://proxy.zipeline.com/u/37/blog/:path*"
     }
   ]
 }
